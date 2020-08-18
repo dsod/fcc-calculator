@@ -1,0 +1,106 @@
+$calc-padding: 3px;
+$calc-width: 360px;
+$calc-height: 500px;
+$calc-grid-rows: 6;
+$calc-grid-columns: 4;
+$calc-grid-gap: 2px;
+$calc-grid-column-width: calc(
+  (#{$calc-width} - (#{$calc-grid-gap} * (#{$calc-grid-columns} - 1))) / #{$calc-grid-columns}
+);
+$calc-grid-row-height: calc((#{$calc-height} / #{$calc-grid-rows}));
+
+$button-default-color: rgb(212, 212, 212);
+$button-default-border-color: rgb(90, 90, 90);
+$button-clear-color: rgb(206, 98, 79);
+$button-equals-color: rgb(97, 120, 224);
+$border-color: rgb(90, 90, 90);
+
+.Calculator {
+  position: absolute;
+  top: calc(50vh - (#{$calc-height} / 2));
+  left: calc(50vw - (#{$calc-width} / 2));
+  width: $calc-width;
+  height: $calc-height;
+  padding: $calc-padding;
+  border: 1px solid $border-color;
+  border-radius: 3px;
+  background-color: white;
+  display: grid;
+  grid-template-columns: repeat($calc-grid-columns, $calc-grid-column-width);
+  grid-template-rows: repeat(auto-fill, $calc-grid-row-height);
+  grid-gap: 2px;
+
+  & button {
+    background-color: $button-default-color;
+    border: 1px solid $border-color;
+    border-radius: 2px;
+    color: black;
+    width: 100%;
+    height: 100%;
+    font-family: "Play", sans-serif;
+    font-size: 24px;
+
+    &:hover {
+      background-color: darken($color: $button-default-color, $amount: 50%);
+      border-color: lighten($color: $border-color, $amount: 50%);
+      color: white;
+      font-weight: bold;
+    }
+  }
+
+  & #clear,
+  #zero {
+    grid-column: 1 / span 2;
+  }
+
+  & #clear {
+    background-color: $button-clear-color;
+
+    &:hover {
+      background-color: darken($color: $button-clear-color, $amount: 25%);
+    }
+  }
+
+  & #equals {
+    grid-row: span 2;
+    background-color: $button-equals-color;
+
+    &:hover {
+      background-color: darken($color: $button-equals-color, $amount: 25%);
+    }
+  }
+
+  & #display {
+    grid-column: 1 / -1;
+    grid-row: span 1;
+    border: 1px solid $border-color;
+    border-radius: 2px;
+    display: grid;
+    grid-template-rows: 45% 1% 54%;
+    align-items: center;
+    text-align: right;
+    font-family: "Black Ops One", cursive;
+  }
+
+  & #output,
+  #input {
+    padding: 4px;
+  }
+
+  & #output {
+    color: #555;
+    font-size: 14px;
+  }
+
+  & #input {
+    font-size: 24px;
+  }
+
+  & hr {
+    width: 80%;
+    background: #555;
+    height: 1px;
+    border: none;
+    margin: 0 auto;
+  }
+}
