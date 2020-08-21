@@ -1,19 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { connect, Provider, ConnectedProps } from "react-redux";
-import { createStore, combineReducers } from "redux";
-import "./index.scss";
-import Calculator from "./components/Calculator";
+import { Provider } from "react-redux";
 
-import { calculatorReducer } from "./store/reducers";
+import { store } from "./store/store";
 
-const rootReducer = combineReducers({
-    calculator: calculatorReducer,
-});
-
-export type RootState = ReturnType<typeof rootReducer>;
-
-const store = createStore(rootReducer);
+import "./styles/index.scss";
+import { Calculator } from "./components/Calculator";
 
 ReactDOM.render(
     <React.StrictMode>
